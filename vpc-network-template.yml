@@ -45,7 +45,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref 'cloudVPC'
-      AvailabilityZone: us-east-1a
+      AvailabilityZone: !Select [0, !GetAZs '']
       CidrBlock: 10.0.0.0/20
       MapPublicIpOnLaunch: true
       Tags:
@@ -57,7 +57,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref 'cloudVPC'
-      AvailabilityZone: us-east-1b
+      AvailabilityZone: !Select [1, !GetAZs '']
       CidrBlock: 10.0.16.0/20
       MapPublicIpOnLaunch: true
       Tags:
@@ -171,7 +171,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref 'cloudVPC'
-      AvailabilityZone: us-east-1a
+      AvailabilityZone: !Select [0, !GetAZs '']
       CidrBlock: 10.0.32.0/20
       MapPublicIpOnLaunch: false
 
@@ -180,7 +180,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref 'cloudVPC'
-      AvailabilityZone: us-east-1b
+      AvailabilityZone: !Select [1, !GetAZs '']
       CidrBlock: 10.0.48.0/20
       MapPublicIpOnLaunch: false
 
@@ -189,7 +189,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref 'cloudVPC'
-      AvailabilityZone: us-east-1a
+      AvailabilityZone: !Select [0, !GetAZs '']
       CidrBlock: 10.0.64.0/20
       MapPublicIpOnLaunch: false
 
@@ -198,7 +198,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref 'cloudVPC'
-      AvailabilityZone: us-east-1b
+      AvailabilityZone: !Select [1, !GetAZs '']
       CidrBlock: 10.0.80.0/20
       MapPublicIpOnLaunch: false
 
