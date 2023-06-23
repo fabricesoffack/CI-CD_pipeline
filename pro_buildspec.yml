@@ -1,0 +1,33 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo ======== WE ARE IN THE INSTALLATION PHASE ==========
+      - pip install --upgrade pip
+      - pip install cfn-lint
+  pre_build:
+    commands:
+      - echo ======== WE ARE IN THE PREBUILD PHASE ==========
+      - echo check whether Python has been installed
+      - python --version
+      - echo check whether pip is installed
+      - pip --version
+      - echo check whether cfn-lint is installed
+      - cfn-lint --version
+  build:
+    commands:
+      - echo ====== WE ARE IN THE BUILD PHASE ========
+      - echo ===== TESTING OUR CLOUDFORMATION TEMPLATE =====
+      - cfn-lint vpc-network-template.yml
+      - echo WE ARE RUNNING OUR CFN TEMPLATE
+      - aws cloudformation package --template-file vpc-network-template.yml --s3-bucket fabmu2023 --output-template-file outputTemplate.yml
+  post_build:
+    commands:
+      - echo **** Build was completed at `date` ****
+artifacts:
+  files: # use this command to select all files in the repository "**/*"
+    - vpc-network-template.yml
+    - outputTemplate.yml
