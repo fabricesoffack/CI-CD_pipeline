@@ -261,6 +261,9 @@ Resources:
       GroupName: SecurityGroup-08
       GroupDescription: Open HTTP (port 80), HTTPS (port 443), SSH (port 22)
       VpcId: !Ref 'cloudVPC'
+      Tags:
+        - Key: Name
+          Value: !Join ['', [!Ref 'AWS::StackName', '-sg']]
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
@@ -269,6 +272,7 @@ Resources:
         - IpProtocol: tcp
           FromPort: 443
           ToPort: 443
+          
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
           FromPort: 22
